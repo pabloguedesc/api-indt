@@ -11,8 +11,20 @@ export class UsersRepository implements IUsersRepository {
     private usersRepository: Repository<User>,
   ) {}
 
+  async findByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOneBy({ email });
+  }
+
+  // countUsers(): Promise<ICountUsersDto[]> {
+  //   throw new Error('Method not implemented.');
+  // }
+
   async findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      order: { createdAt: 'DESC' },
+      select: ['email', 'name', 'id', 'isActivated', 'lastName', 'role'],
+      relations: ['role'],
+    });
   }
 
   async findById(id: string): Promise<User | null> {
