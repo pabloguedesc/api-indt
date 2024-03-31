@@ -1,6 +1,6 @@
 # API INDT - NestJS e TypeORM
 
-API REST, construída com NestJS e TypeScript, emprega o TypeORM para gerenciamento otimizado de banco de dados, com autenticação via JWT e segurança de dados via bcrypt. A utilização do Docker facilita a configuração e o deploy, tornando-a uma escolha robusta e prática para projetos que demandam alta segurança e eficiência.
+API REST, desenvolvida com NestJS e TypeScript, utiliza TypeORM para gerenciamento avançado de banco de dados, autenticação via JWT, e segurança de dados com bcrypt. Inclui migrations e seeding de roles, além de um usuário master e alguns usuários iniciais, executados automaticamente durante as migrations. Com Docker, a configuração e o deploy se tornam simplificados, fazendo desta API uma solução robusta e eficiente para projetos que requerem alta segurança e funcionalidades completas de gerenciamento de usuários.
 
 ## Como rodar o projeto:
 
