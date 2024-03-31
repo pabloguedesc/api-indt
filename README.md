@@ -57,11 +57,10 @@ BaseURL:
 `http://host:port/api/v1`
 
 ### Authentication:
+- Realizar o login e obter token de acesso - ( abaixo estão as credenciais para acessar como usuário master )
 
 ```http
   POST BaseURL/auth
-
-  "Acesso de usuário master abaixo:"
 
   Exemplo Payload: {
     "email": "master@admin.com",
