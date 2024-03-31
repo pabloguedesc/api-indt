@@ -10,6 +10,6 @@ async function bootstrap() {
   app.use(cors());
   app.useGlobalPipes(new ValidationPipe());
   app.setGlobalPrefix('api/v1');
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();

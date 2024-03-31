@@ -9,6 +9,9 @@ dotenv.config();
 export const DataSourceTypeORM = new DataSource({
   type: 'postgres',
   host: process.env.DB_HOST,
+  ssl: {
+    rejectUnauthorized: false, // conexão insegura, manter false apenas em ambiente de desenvolvimento
+  },
   port: parseInt(process.env.DB_PORT, 10),
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
