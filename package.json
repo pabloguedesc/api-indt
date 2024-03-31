@@ -6,8 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "prebuild": "npm run migration:run",
-    "build": "nest build",
+    "build": "npm run migration:run && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:run": "npm run typeorm -- migration:run -d ./src/database/data-source.ts",
