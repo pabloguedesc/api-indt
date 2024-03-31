@@ -11,18 +11,22 @@ export class RolesRepository implements IRolesRepository {
     private rolesRepository: Repository<Role>,
   ) {}
 
-  findAll(): Promise<Role[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Role[]> {
+    return this.rolesRepository.find();
   }
+
   async findById(id: string): Promise<Role> {
     return this.rolesRepository.findOneBy({ id });
   }
+
   create(item: Role): Promise<Role> {
     throw new Error('Method not implemented.');
   }
-  update(id: string, item: Role): Promise<Role> {
+
+  update(id: string, newItem: Role): Promise<Role> {
     throw new Error('Method not implemented.');
   }
+
   delete(id: string): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
