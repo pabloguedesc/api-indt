@@ -6,6 +6,10 @@ API REST, desenvolvida com NestJS e TypeScript, utiliza TypeORM para gerenciamen
   Use o tree.txt para ter visão geral dos arquivos e diretórios do projeto
 ```
 
+## Acessar api online:
+
+`link`: https://api-indt.vercel.app/api/v1/
+
 ## Como rodar o projeto:
 
 1. Clonar repositório
