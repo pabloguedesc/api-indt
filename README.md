@@ -56,6 +56,21 @@ BaseURL:
 
 `http://host:port/api/v1`
 
+### Authentication:
+
+```http
+  POST BaseURL/auth
+
+  "Acesso de usuário master abaixo:"
+
+  Exemplo Payload: {
+    "email": "master@admin.com",
+    "password": "admin123"
+  }
+
+```
+
+
 ### Users:
 
 - Criar novo usuário
