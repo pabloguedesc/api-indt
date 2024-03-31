@@ -20,7 +20,11 @@ export class AuthService {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new NotFoundException('User not found');
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    if (user.isActivated === false) {
+      throw new UnauthorizedException('User deactivated');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -35,10 +39,25 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const user = await this.validateUser(loginDto);
 
-    const payload = { email: user.email, sub: user.id };
+    const payload = {
+      email: user.email,
+      role: user.role,
+      sub: user.id,
+    };
 
     return {
       token: this.jwtService.sign(payload),
     };
+  }
+
+  public async validateToken(token: string): Promise<any> {
+    try {
+      const decoded = this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET,
+      });
+      return decoded;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }

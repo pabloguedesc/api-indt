@@ -47,9 +47,7 @@ export class User {
   role: Role;
 
   @BeforeInsert()
-  @BeforeUpdate()
   async hashPassword() {
-    const salt = await bcrypt.genSalt();
-    this.password = await bcrypt.hash(this.password, salt);
+    this.password = await bcrypt.hash(this.password, 10);
   }
 }

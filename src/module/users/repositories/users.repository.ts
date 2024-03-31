@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { IUsersRepository } from './users.repository.interface';
 import { Repository } from 'typeorm';
+import { ICountUsersRepositoryResponseDto } from '../dto/count-users.dto';
 
 @Injectable()
 export class UsersRepository implements IUsersRepository {
@@ -12,12 +13,33 @@ export class UsersRepository implements IUsersRepository {
   ) {}
 
   async findByEmail(email: string): Promise<User> {
-    return this.usersRepository.findOneBy({ email });
+    return this.usersRepository.findOne({
+      where: { email },
+      relations: ['role'],
+    });
   }
 
-  // countUsers(): Promise<ICountUsersDto[]> {
-  //   throw new Error('Method not implemented.');
-  // }
+  async countUsers(): Promise<ICountUsersRepositoryResponseDto[]> {
+    const query = `
+        WITH filtered_users AS (
+            SELECT u.*, r.description
+            FROM users u
+            INNER JOIN roles r ON u."roleId" = r.id
+            WHERE u.email != 'master@admin.com'
+        )
+        SELECT
+          COUNT(*) AS total_users,
+          COUNT(CASE WHEN "isActivated" = TRUE THEN 1 END) AS total_activated,
+          COUNT(CASE WHEN "isActivated" = FALSE THEN 1 END) AS total_deactivated,
+          COUNT(CASE WHEN description = 'admin' AND "isActivated" = TRUE THEN 1 END) AS admin_activated,
+          COUNT(CASE WHEN description = 'admin' AND "isActivated" = FALSE THEN 1 END) AS admin_deactivated,
+          COUNT(CASE WHEN description = 'common' AND "isActivated" = TRUE THEN 1 END) AS common_activated,
+          COUNT(CASE WHEN description = 'common' AND "isActivated" = FALSE THEN 1 END) AS common_deactivated
+        FROM filtered_users
+    `;
+
+    return this.usersRepository.query(query);
+  }
 
   async findAll(): Promise<User[]> {
     return this.usersRepository.find({

@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
+import { ValidateTokenDto } from './dto/validate-token.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -9,5 +10,10 @@ export class AuthController {
   @Post()
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
+  }
+
+  @Post('validate')
+  async validateToken(@Body() { token }: ValidateTokenDto) {
+    return this.authService.validateToken(token);
   }
 }

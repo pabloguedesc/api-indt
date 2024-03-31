@@ -10,7 +10,7 @@ import { ListUsersUseCase } from './use-cases/list-users/list-users.use-case';
 import { FindUserByIdUseCase } from './use-cases/find-user-by-id/find-user-by-id.use-case';
 import { DeleteUserByIdUseCase } from './use-cases/delete-user-by-id/delete-user-by-id';
 import { UpdateUserUseCase } from './use-cases/update-user/update-user-use-case';
-// import { CountUsersUseCase } from './use-cases/count-users/count-users.use-case';
+import { CountUsersUseCase } from './use-cases/count-users/count-users.use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([User, Role])],
@@ -21,7 +21,7 @@ import { UpdateUserUseCase } from './use-cases/update-user/update-user-use-case'
     FindUserByIdUseCase,
     DeleteUserByIdUseCase,
     UpdateUserUseCase,
-    // CountUsersUseCase,
+    CountUsersUseCase,
     {
       provide: 'IUsersRepository',
       useClass: UsersRepository,

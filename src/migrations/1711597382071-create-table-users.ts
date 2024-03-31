@@ -96,7 +96,7 @@ export class CreateTableUsers1711595910542 implements MigrationInterface {
         `INSERT INTO users ("name", "lastName", "email", "password", "isActivated", "roleId") VALUES 
         ('Common', 'User1', 'user1@user.com', '${hashedPassword}', true, '${commonRoleId[0].id}'),
         ('Common', 'User2', 'user2@user.com', '${hashedPassword}', true, '${commonRoleId[0].id}'),
-        ('Common', 'User3', 'user3@user.com', '${hashedPassword}', false, '${commonRoleId[0].id}');`,
+        ('Admin', 'User3', 'user3@user.com', '${hashedPassword}', false, '${adminRoleId[0].id}');`,
       );
     }
   }
