@@ -17,8 +17,6 @@ COPY . .
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-# Expõe a porta 3000
 EXPOSE 3000
 
-# Define o script de entrada como ponto de entrada
 ENTRYPOINT ["./entrypoint.sh"]
