@@ -2,6 +2,10 @@
 
 API REST, desenvolvida com NestJS e TypeScript, utiliza TypeORM para gerenciamento avançado de banco de dados, autenticação via JWT, e segurança de dados com bcrypt. Inclui migrations e seeding de roles, além de um usuário master e alguns usuários iniciais, executados automaticamente durante as migrations. Com Docker, a configuração e o deploy se tornam simplificados, fazendo desta API uma solução robusta e eficiente para projetos que requerem alta segurança e funcionalidades completas de gerenciamento de usuários.
 
+```bash
+  Use o tree.txt para ter visão geral dos arquivos e diretórios do projeto
+```
+
 ## Como rodar o projeto:
 
 1. Clonar repositório
